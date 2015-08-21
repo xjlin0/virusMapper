@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :followship do
     from nil
-to nil
+follower nil
   end
 
 end

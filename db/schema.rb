@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819224008) do
+ActiveRecord::Schema.define(version: 20150821163321) do
 
   create_table "followships", force: :cascade do |t|
-    t.integer  "from_id",     limit: 4
+    t.integer  "followee_id", limit: 4
     t.integer  "follower_id", limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
+  add_index "followships", ["followee_id"], name: "index_followships_on_followee_id", using: :btree
   add_index "followships", ["follower_id"], name: "index_followships_on_follower_id", using: :btree
-  add_index "followships", ["from_id"], name: "index_followships_on_from_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.string   "content",    limit: 255
