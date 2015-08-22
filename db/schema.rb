@@ -20,11 +20,12 @@ ActiveRecord::Schema.define(version: 20150821163321) do
     t.datetime "updated_at",            null: false
   end
 
+  add_index "followships", ["followee_id", "follower_id"], name: "index_followships_on_followee_id_and_follower_id", unique: true, using: :btree
   add_index "followships", ["followee_id"], name: "index_followships_on_followee_id", using: :btree
   add_index "followships", ["follower_id"], name: "index_followships_on_follower_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
-    t.string   "content",    limit: 255
+    t.string   "content",    limit: 255, null: false
     t.integer  "user_id",    limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
