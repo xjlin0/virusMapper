@@ -33,6 +33,8 @@ group :production do
   gem 'puma'
 end
 group :test do
+  gem 'simplecov'
+  gem 'nyan-cat-formatter'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'launchy'

@@ -21,7 +21,7 @@ testing_user_number.times do
 		name: Faker::Name.name, 
 		email: Faker::Internet.email, 
 		password: "password",
-		img_url: Faker::Internet.url,
+		img_url: "http://lorempixel.com/200/200"
 	)
 end
 
