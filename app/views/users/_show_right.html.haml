@@ -1,0 +1,10 @@
+- if user.posts.size > 0 #move this block to helper
+  %h3 Tweets by #{user.name}
+  - user.posts.each do |post|
+    %p
+      = post.content
+      %br
+      posted on
+      = post.created_at
+- else
+  %h3 User #{user.name} does not have any tweets.

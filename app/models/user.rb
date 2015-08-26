@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
 
 	has_many :stalkers, class_name: "Followship", foreign_key: :follower_id, dependent: :destroy
 	has_many :fans, class_name: "User", through: :stalkers, source: :followee
+
+	def number_of(method)
+		self.send(method).size.to_s
+	end
 end

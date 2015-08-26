@@ -1,45 +1,6 @@
-%h3 User Info
-=image_tag(@user.img_url, alt: @user.name+"'s picture")
-
-
-
-%p
-  Name:
-  =@user.name
-%p
-  Email: 
-  =mail_to @user.email
-%p
-  Posts: #{@user.name} got #{@user.posts.size} post(s) here.
-
--if current_user.idols.pluck(:id).include?(@user.id)
-  =button_to "Unfollow the user", user_remove_followship_path(user_id: @user.id), method: :delete, class: "button btn btn-lg btn-info"
-
--else
-  =button_to "Follow the user", user_new_followship_path(user_id: @user.id), class: "button btn btn-lg btn-info"
-
-
-  -#{ action: "followships#create", id: @user.id }, method: :post, form_class: "btn btn-lg btn-info"
-
-%hr
-
-- if @user.idols.size > 0
-  %h3 #{@user.name} is following
-  - @user.idols.each do |idol|
-    %p
-      =idol.name
-- else
-  %h3 #{@user.name} is not following anyone.
-
-%hr
-
-- if @user.posts.size > 0
-  %h3 Tweetss by #{@user.name}
-  - @user.posts.each do |post|
-    %p
-      =post.content
-      %br
-      posted on
-      =post.created_at
-- else
-  %h3 #{@user.name} does not have any tweets.
+.container-fluid
+  .row
+    .col-xs-4
+      =render 'show_left', user: @user
+    .col-xs-8
+      =render 'show_right', user: @user

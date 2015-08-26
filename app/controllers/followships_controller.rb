@@ -13,10 +13,15 @@ class FollowshipsController < ApplicationController
   end
 
   def index
+    puts "FollowshipsController#show:line 16"
+    @my_fans = current_user.fans
+    @my_idols= current_user.idols
+    p params  #Do I need partials?
+    
   end
 
   def destroy
-    puts "FollowshipsController#show:line 8"
+    puts "FollowshipsController#show:line 23"
     p params
     @user = User.includes(:fans).find(params[:user_id])
     @user.fans.delete(current_user)

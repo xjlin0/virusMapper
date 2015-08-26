@@ -472,6 +472,10 @@
         1,
         null
       ],
+      "/Users/jlin/Desktop/toys/tweetComposer/app/helpers/followships_helper.rb": [
+        1,
+        null
+      ],
       "/Users/jlin/Desktop/toys/tweetComposer/config/initializers/filter_parameter_logging.rb": [
         null,
         null,
@@ -553,6 +557,10 @@
         1,
         1,
         1,
+        1,
+        1,
+        1,
+        null,
         null
       ],
       "/Users/jlin/Desktop/toys/tweetComposer/app/models/user.rb": [
@@ -569,6 +577,10 @@
         null,
         1,
         1,
+        null,
+        1,
+        27,
+        null,
         null
       ],
       "/Users/jlin/Desktop/toys/tweetComposer/spec/support/capybara.rb": [
@@ -1148,6 +1160,10 @@
       ],
       "/Users/jlin/Desktop/toys/tweetComposer/app/controllers/visitors_controller.rb": [
         1,
+        null,
+        1,
+        7,
+        null,
         null
       ],
       "/Users/jlin/Desktop/toys/tweetComposer/app/controllers/users_controller.rb": [
@@ -1160,6 +1176,17 @@
         null,
         1,
         2,
+        2,
+        null,
+        2,
+        null,
+        null,
+        null,
+        null,
+        2,
+        2,
+        null,
+        null,
         null,
         null,
         null,
@@ -1168,6 +1195,6 @@
         null
       ]
     },
-    "timestamp": 1440448173
+    "timestamp": 1440548678
   }
 }

@@ -2,4 +2,19 @@
 %p
   = link_to 'Users:', users_path
   = User.count
-  registered so far.
+  registered so far, here are some latest tweets:
+
+%hr
+
+- unless @tweets.nil? #move this block to helper
+
+  - @tweets.each do |tweet|
+    %p
+      =tweet.content
+      %br
+      posted on
+      =tweet.created_at
+      by
+      =tweet.user.name
+- else
+  %h3 There is no tweets.
