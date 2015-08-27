@@ -1,0 +1,25 @@
+- unless current_user.idols.empty? #move this block to helper
+  %h3 You are following:
+  %table.table
+    %tbody
+      - current_user.idols.each do |idol|
+        %tr
+          %td= link_to(idol.name, idol)
+          %td= button_to("Unfollow the user", user_remove_followship_path(user_id: idol.id), method: :delete, class: "btn btn-xs btn-warning")
+
+
+- else
+  %h3 You are not following anybody.
+
+
+%hr
+
+- unless current_user.fans.empty? #move this block to helper
+  %h3 You are followed by:
+  %table.table
+    %tbody
+      - current_user.fans.each do |fan|
+        %tr
+          %td= link_to(fan.name, fan)
+- else
+  %h3 You are not followed by anybody.

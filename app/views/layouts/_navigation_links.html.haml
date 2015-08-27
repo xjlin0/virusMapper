@@ -2,10 +2,10 @@
   %li= link_to 'Edit account', edit_user_registration_path
   %li= link_to 'Sign out', destroy_user_session_path, method:'delete'
   %li= link_to 'Users', users_path
-  %li= link_to 'Tweets: ' + current_user.number_of(:posts), users_path
-  %li= link_to 'Followers: ' + current_user.number_of(:fans), users_path
-  %li= link_to 'Following: ' + current_user.number_of(:idols), users_path
+  %li= link_to 'Tweets: ' + current_user.number_of(:posts), user_path(current_user)
+  %li= link_to 'Followers: ' + current_user.number_of(:fans), user_followships_path(current_user)
+  %li= link_to 'Following: ' + current_user.number_of(:idols), user_followships_path(current_user)
 
 - else
-  %li= link_to 'Sign in', new_user_session_path
-  %li= link_to 'Register', new_user_registration_path
+  %li= link_to 'Sign in', new_user_session_path(current_user)
+  %li= link_to 'Register', new_user_registration_path(current_user)

@@ -12,9 +12,10 @@
     %p
       =tweet.content
       %br
-      posted on
-      =tweet.created_at
-      by
-      =tweet.user.name
+      posted at
+      = time_ago_in_words(tweet.created_at) 
+      ago by
+      = link_to(tweet.user.name, tweet.user)
+      / =tweet.user.name
 - else
   %h3 There is no tweets.

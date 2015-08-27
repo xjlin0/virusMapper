@@ -1,25 +1,23 @@
-%h3 User Info
-= image_tag(user.img_url, alt: "User " + user.name.to_s + "'s picture")
+%h3 User #{user.name}
+= image_tag(user.img_url, {alt: "User " + user.name.to_s + "'s picture", class: "thumbnail"})
 
-%p
-  Name:
-  = user.name
-%p
-  Email: 
-  = mail_to user.email
+-if current_user == user
+  %p
+    Email: 
+    = mail_to(user.email, nil, {type: "email"})
 %p
   Posts: #{user.name} got #{user.posts.size} post(s) here.
 
 - if current_user.idols.include?(user)
-  = button_to "Unfollow the user", user_remove_followship_path(user_id: user.id), method: :delete, class: "button btn btn-lg btn-info"
+  = button_to("Unfollow the user", user_remove_followship_path(user_id: user.id), method: :delete, class: "button btn btn-lg btn-info")
 
 - else
-  = button_to "Follow the user", user_new_followship_path(user_id: user.id), class: "button btn btn-lg btn-info"
+  = button_to("Follow the user", user_new_followship_path(user_id: user.id), class: "button btn btn-lg btn-info")
 
 - unless user.idols.empty? #move this block to helper
   %h3 User #{user.name} is following
   - user.idols.each do |idol|
     %p
-      = link_to idol.name, idol
+      = link_to(idol.name, idol)
 - else
   %h3 User #{user.name} is not following anyone.

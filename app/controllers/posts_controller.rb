@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:create, :destroy]
 
   # GET /posts
   # GET /posts.json
@@ -21,19 +22,13 @@ class PostsController < ApplicationController
   def edit
   end
 
-  # POST /posts
-  # POST /posts.json
   def create
     @post = Post.new(post_params)
-
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post.save
+      flash[:notice] = "Your tweet is successfully created"
+      redirect_to request.env['HTTP_REFERER']
+    else
+      p "You've got some errors at PostsController line 34" # <%= debug(params) if Rails.env.development? %>
     end
   end
 
