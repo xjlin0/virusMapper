@@ -1,11 +1,22 @@
 %hr
-- if user.posts.size > 0 #move this block to helper
-  %h3 Lastest tweets by #{user.name}:
-  - user.posts.reverse_order.each do |post|
+
+
+
+-#This is for singed in user only
+
+
+
+
+
+- unless posts.empty? #move this block to helper
+  %h3 User and user's idols lastest tweets by #{user.name}:
+  - posts.reverse_each do |post|
     %p
       = post.content
       %br
-      posted at
+      posted by
+      = link_to(post.user.name, post.user)
+      at
       = time_ago_in_words(post.created_at) 
       ago.
 - else

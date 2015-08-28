@@ -100,6 +100,8 @@
         null,
         1,
         null,
+        null,
+        null,
         null
       ],
       "/Users/jlin/Desktop/toys/tweetComposer/config/boot.rb": [
@@ -474,6 +476,11 @@
       ],
       "/Users/jlin/Desktop/toys/tweetComposer/app/helpers/application_helper.rb": [
         1,
+        null,
+        null,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/jlin/Desktop/toys/tweetComposer/app/helpers/followships_helper.rb": [
@@ -481,6 +488,29 @@
         null
       ],
       "/Users/jlin/Desktop/toys/tweetComposer/app/helpers/posts_helper.rb": [
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/jlin/Desktop/toys/tweetComposer/app/helpers/visitors_helper.rb": [
         1,
         null
       ],
@@ -1196,9 +1226,10 @@
         1,
         5,
         null,
+        null,
         null
       ]
     },
-    "timestamp": 1440656847
+    "timestamp": 1440778289
   }
 }

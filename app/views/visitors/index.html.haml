@@ -6,7 +6,9 @@
 
 %hr
 
-- unless @tweets.nil? #move this block to helper
+/ =# get_recent_tweets(tweets_arr: @tweets)
+
+- unless @tweets.empty? #move this block to helper
 
   - @tweets.each do |tweet|
     %p

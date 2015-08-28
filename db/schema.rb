@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821163321) do
+ActiveRecord::Schema.define(version: 20150828170038) do
 
   create_table "followships", force: :cascade do |t|
     t.integer  "followee_id", limit: 4
@@ -48,6 +48,9 @@ ActiveRecord::Schema.define(version: 20150821163321) do
     t.datetime "updated_at",                                      null: false
     t.string   "name",                   limit: 255
     t.string   "img_url",                limit: 255
+    t.integer  "follower_count",         limit: 4,   default: 0
+    t.integer  "followee_count",         limit: 4,   default: 0
+    t.integer  "post_count",             limit: 4
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

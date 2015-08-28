@@ -6,7 +6,7 @@
     Email: 
     = mail_to(user.email, nil, {type: "email"})
 %p
-  Posts: #{user.name} got #{user.posts.size} post(s) here.
+  Posts: #{user.name} got #{user.post_count} post(s) here.
 
 - if current_user.idols.include?(user)
   = button_to("Unfollow the user", user_remove_followship_path(user_id: user.id), method: :delete, class: "button btn btn-lg btn-info")

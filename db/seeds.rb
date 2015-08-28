@@ -26,7 +26,7 @@ testing_user_number.times do
 end
 
 users = User.all
-users.each { |usr| usr.fans << users.sample( rand(1..users.length/10) ) }
+users.each { |usr| usr.fans << users.sample( rand(1..users.length/3) ) }
 
 testing_post_number.times do
 	post = Post.create(
@@ -34,3 +34,5 @@ testing_post_number.times do
 		content: Faker::Lorem.sentence( rand(1..post_max_word_number) ),
 	)
 end
+
+#testing_post_number.times {Post.create(user_id: rand(2..testing_user_number + 1), content: Faker::Lorem.sentence( rand(1..post_max_word_number) ))}
