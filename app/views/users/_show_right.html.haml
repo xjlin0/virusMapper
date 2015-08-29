@@ -1,23 +1,21 @@
-%hr
+.well
 
+  -#This is for singed in user only
 
-
--#This is for singed in user only
-
-
-
-
-
-- unless posts.empty? #move this block to helper
-  %h3 User and user's idols lastest tweets by #{user.name}:
-  - posts.reverse_each do |post|
-    %p
-      = post.content
-      %br
-      posted by
-      = link_to(post.user.name, post.user)
-      at
-      = time_ago_in_words(post.created_at) 
-      ago.
-- else
-  %h3 User #{user.name} does not have any tweets.
+  - unless posts.empty? #move this block to helper
+    %h3 User and user's idols lastest tweets by #{user.name}:
+    - posts.reverse_each do |post|
+      .panel
+        .panel-heading
+          .panel-title
+            = post.content
+        .panel-body.text-right
+          \- posted by
+          = link_to(post.user.name, post.user)
+          at
+          = time_ago_in_words(post.created_at) 
+          ago.
+        
+        
+  - else
+    %h3 User #{user.name} does not have any tweets.

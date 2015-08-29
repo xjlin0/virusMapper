@@ -3,4 +3,5 @@ class Post < ActiveRecord::Base
 
   validates :content, presence: true
   validates :user_id, presence: true
+  #validates_length_of :content, maximum: 140
 end

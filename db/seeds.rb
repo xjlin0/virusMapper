@@ -8,6 +8,8 @@
 user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email
 
+User.first.update(password: "uuuuuuuu", img_url: "http://lorempixel.com/200/200", name: "Jack Jack")
+
 #('a'..'e').each{|x| User.create(email: x+"@"+x+"."+x, password: x*8) }
 
 ##########seeding by Faker###############
@@ -20,7 +22,7 @@ testing_user_number.times do
 	User.create(
 		name: Faker::Name.name, 
 		email: Faker::Internet.email, 
-		password: "password",
+		password: "uuuuuuuu",
 		img_url: "http://lorempixel.com/200/200"
 	)
 end

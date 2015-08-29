@@ -11,3 +11,9 @@
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
         = render 'layouts/navigation_links'
+      - if user_signed_in?
+        .navbar-form
+          .input-group
+            %input.form-control{id: "searchTerm", type: "text", placeholder: "search for user/tweet"}
+            %span.input-group-btn
+              %button.btn.btn-default{type: "button"} Go!

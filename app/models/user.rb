@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 
 	def self.search(search_term)
 	  where("name LIKE :search OR content LIKE :search", search: search_term)
-	  #ILIKE is postgres only http://stackoverflow.com/questions/19105706
+	  #ILIKE is postgres only, http://stackoverflow.com/questions/19105706
 	end
 
 	# def number_of(method)
