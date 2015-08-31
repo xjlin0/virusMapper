@@ -13,13 +13,13 @@ feature 'User index page', :devise do
 
   # Scenario: User listed on index page
   #   Given I am signed in
-  #   When I visit the user index page
-  #   Then I see my own email address
-  scenario 'user sees own email address' do
+  #   When I visit all user index page
+  #   Then I cannot see everybody's email address
+  scenario "logged in user cannot see others email address in all users's index page" do
     user = FactoryGirl.create(:user)
     login_as(user, scope: :user)
-    visit users_path
-    expect(page).to have_content user.email
+    visit users_path   #this is all users page
+    expect(page).to have_no_content user.email
   end
 
 end

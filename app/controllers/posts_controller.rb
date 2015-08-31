@@ -25,11 +25,11 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      flash[:notice] = "Your tweet is successfully created"
-      redirect_to request.env['HTTP_REFERER']
+      flash.notice = "Your tweet is successfully created"
     else
-      p "You've got some errors at PostsController line 34" # <%= debug(params) if Rails.env.development? %>
+      flash.alert =  "You've got some errors in your post, say, too long?" # <%= debug(params) if Rails.env.development? %>
     end
+    redirect_to request.env['HTTP_REFERER']
   end
 
   # PATCH/PUT /posts/1

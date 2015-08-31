@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :posts, except: [:create]
   post '/posts' => 'posts#create', as: 'create_post'
 
+  get '/search' => 'application#search'
+
   devise_for :users
 
   resources :users, only: [:index, :show] do

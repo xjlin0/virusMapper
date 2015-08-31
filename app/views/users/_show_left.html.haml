@@ -7,7 +7,9 @@
       Email: 
       = mail_to(user.email, nil, {type: "email"})
   %p
-    User #{user.name} has posted #{user.post_count} tweet(s) so far.
+    User #{user.name} has posted 
+    = pluralize(user.post_count, 'tweet') 
+    so far.
 
   - if current_user.idols.include?(user)
     = button_to("Unfollow the user", user_remove_followship_path(user_id: user.id), method: :delete, class: "button btn btn-lg btn-info")
@@ -15,11 +17,8 @@
   - else
     = button_to("Follow the user", user_new_followship_path(user_id: user.id), class: "button btn btn-lg btn-info")
 
-
-
-
 .well
-  - unless user.idols.empty? #move this block to helper
+  - unless user.followee_count.zero? #move this block to helper
     %h4 User #{user.name} is following:
     - user.idols.each do |idol|
       %p

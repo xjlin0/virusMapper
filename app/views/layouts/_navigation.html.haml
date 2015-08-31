@@ -12,8 +12,9 @@
       %ul.nav.navbar-nav
         = render 'layouts/navigation_links'
       - if user_signed_in?
-        .navbar-form
+        .navbar-form.text-right
           .input-group
-            %input.form-control{id: "searchTerm", type: "text", placeholder: "search for user/tweet"}
+            %input.form-control{id: "searchTerm", type: "text", placeholder: "search for users"}
             %span.input-group-btn
-              %button.btn.btn-default{type: "button"} Go!
+              %button.btn.btn-default{id: "searchButton", type: "button"}
+                %span.glyphicon.glyphicon-search{alt: 'go!', 'aria-label' => 'go!'}

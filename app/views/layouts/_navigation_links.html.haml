@@ -5,12 +5,6 @@
   %li= link_to('Tweets: ' + current_user.post_count.to_s, user_path(current_user))
   %li= link_to('Followers: ' + current_user.follower_count.to_s, user_followships_path(current_user))
   %li= link_to('Following: ' + current_user.followee_count.to_s, user_followships_path(current_user))
-  / .input-group
-  /   %input.form-control{id: "searchTerm", type: "text", placeholder: "search for user/tweet"}
-  /   %span.input-group-btn
-  /     %button.btn.btn-default{type: "button"} Go!
-
-
 
 - else
   %li= link_to('Sign in', new_user_session_path(current_user))

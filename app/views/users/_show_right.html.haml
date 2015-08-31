@@ -3,19 +3,23 @@
   -#This is for singed in user only
 
   - unless posts.empty? #move this block to helper
-    %h3 User and user's idols lastest tweets by #{user.name}:
+    %h3 User #{user.name} and user's idols lastest tweets:
     - posts.reverse_each do |post|
       .panel
         .panel-heading
-          .panel-title
+          .panel-title.tweets{id: post.id}
             = post.content
-        .panel-body.text-right
-          \- posted by
-          = link_to(post.user.name, post.user)
-          at
+        .panel-body
+          %button.btn.btn-default{type: "button"}
+            %span.vote.glyphicon.glyphicon-thumbs-up{id: post.id, value: 1, alt: 'thumbs-up'}
+              %span.badge 0
+          %button.btn.btn-default{type: "button"}
+            %span.vote.glyphicon.glyphicon-thumbs-down{id: post.id, value: -1, alt: 'thumbs-down'}
+              %span.badge 5
+          \- Posted by
+          = link_to(post.user.name + ",", post.user)
           = time_ago_in_words(post.created_at) 
           ago.
-        
         
   - else
     %h3 User #{user.name} does not have any tweets.

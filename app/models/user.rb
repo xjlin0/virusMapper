@@ -12,10 +12,11 @@ class User < ActiveRecord::Base
 	has_many :stalkers, class_name: "Followship", foreign_key: :follower_id, dependent: :destroy
 	has_many :fans, class_name: "User", through: :stalkers, source: :followee
 
-	def self.search(search_term)
-	  where("name LIKE :search OR content LIKE :search", search: search_term)
-	  #ILIKE is postgres only, http://stackoverflow.com/questions/19105706
-	end
+	def self.search(options = {})
+		search_term = options.fetch(:name) {nil}
+		return [] if search_term.nil?
+	  where("name LIKE :term", term: "%#{search_term}%")
+	end #ILIKE is postgres only, http://stackoverflow.com/questions/19105706
 
 	# def number_of(method)
 	# 	self.send(method).size.to_s

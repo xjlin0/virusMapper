@@ -14,8 +14,4 @@ class UsersController < ApplicationController
     #@post = Post.new #for form_for post
   end
 
-  def search
-    @results = User.includes(:posts, posts: [:content]).search(params[:search])
-  end
-
 end

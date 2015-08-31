@@ -23,6 +23,10 @@ describe Post do
     expect(Post.create(user_id: nil).errors.messages).to include(:user_id)
   end
 
+  it "should reject post with content longer than 140 character" do
+    expect(Post.create(user_id: @user.id, content: "c"*141).errors.messages).to include(:content)
+  end
+
   it { should respond_to(:content) }
 
   it "#content returns a string" do

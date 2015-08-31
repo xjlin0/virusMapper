@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20150828170038) do
   add_index "followships", ["follower_id"], name: "index_followships_on_follower_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
-    t.string   "content",    limit: 255, null: false
+    t.string   "content",    limit: 140, null: false
     t.integer  "user_id",    limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
