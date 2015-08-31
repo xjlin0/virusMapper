@@ -25,3 +25,9 @@
         = link_to(idol.name, idol)
   - else
     %h3 User #{user.name} is not following anyone.
+
+.well
+  %h4 Hot tags:
+  - hot_tags.each do |tag|
+    %p
+      =tag.name

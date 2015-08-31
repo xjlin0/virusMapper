@@ -3,9 +3,9 @@
         var userInput = $('#searchTerm').val();
         if (userInput.length > 0) {
             $.ajax({
-                    url: '/search',
+                    url:      '/search',
                     dataType: 'json',
-                    data: { term: userInput },
+                    data:     { term: userInput },
                 })
                 .done(function(searchResults) {
                     $('#myModal').modal('show');
@@ -19,7 +19,7 @@
                         $('.resultList').html(userHTML.replace(re, '<mark>'+userInput+'</mark>'));
                     }
                 })
-                .fail( function(){} ).always( function(){} );
+                //.fail( function(){} ).always( function(){} );
         } //else { } // user didn't enter any search keywords.
     });
 });

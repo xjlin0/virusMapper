@@ -11,6 +11,7 @@ gem 'bootstrap-sass'
 gem 'devise'                #for login
 gem 'haml-rails'            #haml
 gem 'mysql2'                #official mysql gem?
+gem 'acts-as-taggable-on'   #for hashtags of tweet
 group :development do
   gem 'rack-mini-profiler'  #for code profiling/buttleneck, must below the pg and mysql gems
   gem 'traceroute'          #finding unused routes

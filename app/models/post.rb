@@ -5,11 +5,14 @@ class Post < ActiveRecord::Base
   validates :user_id, presence: true
   validates_length_of :content, maximum: 140
 
-	def self.search(options = {})
-		search_term = options.fetch(:content) {nil}
-		return [] if search_term.nil?
-	  where("content LIKE :term", term: "%#{search_term}%")
-	  #ILIKE is postgres only, http://stackoverflow.com/questions/19105706
-	end
+  acts_as_taggable # Alias for acts_as_taggable_on :tags
+  acts_as_taggable_on :hashtags
+
+	# def self.search(options = {})
+	# 	search_term = options.fetch(:content) {nil}
+	# 	return [] if search_term.nil?
+	#   where("content LIKE :term", term: "%#{search_term}%")
+	#   #ILIKE is postgres only, http://stackoverflow.com/questions/19105706
+	# end
 
 end

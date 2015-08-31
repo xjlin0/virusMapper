@@ -1,8 +1,8 @@
 .well
 
   -#This is for singed in user only
-
-  - unless posts.empty? #move this block to helper
+  - current_user_id_hash = current_user.nil? ? nil : Digest::SHA1.hexdigest(current_user.id.to_s) #Ruby's native #hash value for an object is different across invocations
+  - unless posts.empty? #move this block to helper, need to send both posts and current_user
     %h3 User #{user.name} and user's idols lastest tweets:
     - posts.reverse_each do |post|
       .panel
@@ -11,11 +11,13 @@
             = post.content
         .panel-body
           %button.btn.btn-default{type: "button"}
-            %span.vote.glyphicon.glyphicon-thumbs-up{id: post.id, value: 1, alt: 'thumbs-up'}
-              %span.badge 0
+            %span.vote.glyphicon.glyphicon-thumbs-up{id: post.id, value: 'Up', voter: current_user_id_hash, alt: 'thumbs-up'}
+            %span.badge 0
           %button.btn.btn-default{type: "button"}
-            %span.vote.glyphicon.glyphicon-thumbs-down{id: post.id, value: -1, alt: 'thumbs-down'}
-              %span.badge 5
+            %span.vote.glyphicon.glyphicon-thumbs-down{id: post.id, value: 'Down', voter: current_user_id_hash, alt: 'thumbs-down'}
+            %span.badge 5
+          Hashtags:
+          =post.cached_tag_list
           \- Posted by
           = link_to(post.user.name + ",", post.user)
           = time_ago_in_words(post.created_at) 

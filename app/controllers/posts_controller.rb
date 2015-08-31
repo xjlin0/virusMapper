@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = params[:tag_id].nil? ? Post.all : Post.tagged_with(ActsAsTaggableOn::Tag.find(params[:tag_id]))
   end
 
   # GET /posts/1
@@ -24,6 +24,10 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    hash_tags = @post.content.scan(/\B#\w*[a-zA-Z]+\w*/)  #http://erictarn.com/post/1060722347
+    @post.save_cached_tag_list
+    @post.tag_list.add(hash_tags)
+
     if @post.save
       flash.notice = "Your tweet is successfully created"
     else
@@ -64,6 +68,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:content, :user_id)
+      params.require(:post).permit(:content, :user_id, :tag_list, :tag_id)
     end
 end
