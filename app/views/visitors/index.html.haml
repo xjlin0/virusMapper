@@ -6,18 +6,8 @@
 
 %hr
 
-/ =# get_recent_tweets(tweets_arr: @tweets)
-
-- unless @tweets.empty? #move this block to helper
-
-  - @tweets.each do |tweet|
-    %p
-      =tweet.content
-      %br
-      posted at
-      = time_ago_in_words(tweet.created_at) 
-      ago by
-      = link_to(tweet.user.name, tweet.user)
-      / =tweet.user.name
+- unless @posts.empty? #move this block to helper
+  - @posts.each do |post|
+    = render post
 - else
   %h3 There is no tweets.

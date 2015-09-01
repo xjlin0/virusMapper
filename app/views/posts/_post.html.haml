@@ -1,0 +1,18 @@
+- current_user_id_hash = current_user.nil? ? nil : Digest::SHA1.hexdigest(current_user.id.to_s) #Ruby's native #hash value for an object is different across invocations
+.panel
+  .panel-heading
+    .panel-title.tweets{'data-id' =>  post.id}
+      = link_to(post.content, user_path(post.user))
+  .panel-body
+    %button.btn.btn-default.vote{type: "button"}
+      %span.glyphicon.glyphicon-thumbs-up{'data-id' => post.id}
+      %span.badge.up{'data-id' => post.id, value: 'Up', voter_hash: current_user_id_hash, alt: 'thumbs-up'} 0
+    %button.btn.btn-default.vote{type: "button"}
+      %span.glyphicon.glyphicon-thumbs-down{'data-id' => post.id}
+      %span.badge.down{'data-id' => post.id, value: 'Down', voter_hash: current_user_id_hash, alt: 'thumbs-down'} 5
+    Hashtags:
+    =post.cached_tag_list
+    \- Posted by
+    = link_to(post.user.name + ",", post.user)
+    = time_ago_in_words(post.created_at) 
+    ago.

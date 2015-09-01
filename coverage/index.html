@@ -14,27 +14,27 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2015-08-29T18:39:34-07:00">2015-08-29T18:39:34-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2015-08-31T16:34:41-07:00">2015-08-31T16:34:41-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">96.88%</span></span>
+    (<span class="covered_percent"><span class="green">97.73%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.02
+         2.04
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>48</b> files in total.
-    <b>353</b> relevant lines. 
-    <span class="green"><b>342</b> lines covered</span> and
-    <span class="red"><b>11</b> lines missed </span>
+    <b>352</b> relevant lines. 
+    <span class="green"><b>344</b> lines covered</span> and
+    <span class="red"><b>8</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -63,11 +63,11 @@
       <tr>
         <td class="strong"><a href="#05b7c2210016f07f69b531c955e27a3639c1f101" class="src_link" title="app/controllers/users_controller.rb">app/controllers/users_controller.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>17</td>
-        <td>7</td>
-        <td>7</td>
+        <td>19</td>
+        <td>8</td>
+        <td>8</td>
         <td>0</td>
-        <td>2.1</td>
+        <td>2.5</td>
       </tr>
       
       <tr>
@@ -132,12 +132,12 @@
       
       <tr>
         <td class="strong"><a href="#8a89ead43dac8ae58471c1728df25f08cfbdee7b" class="src_link" title="app/models/post.rb">app/models/post.rb</a></td>
-        <td class="red strong">66.67 %</td>
-        <td>15</td>
-        <td>9</td>
-        <td>6</td>
-        <td>3</td>
-        <td>0.7</td>
+        <td class="green strong">100.0 %</td>
+        <td>18</td>
+        <td>7</td>
+        <td>7</td>
+        <td>0</td>
+        <td>1.0</td>
       </tr>
       
       <tr>
@@ -677,8 +677,8 @@
     <h3>app/controllers/users_controller.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>7</b> relevant lines. 
-      <span class="green"><b>7</b> lines covered</span> and
+      <b>8</b> relevant lines. 
+      <span class="green"><b>8</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -743,46 +743,58 @@
         <li class="covered" data-hits="5" data-linenumber="10">
           <span class="hits">5</span>
           
-          <code class="ruby">    @posts = Post.includes(:user).where(user_id: @user.idols.pluck(:id) + [@user.id] ).last(10) #Get all posts from user and user&#39;s idols</code>
+          <code class="ruby">    @posts = Post.includes(:user).where(user_id: @user.idols.pluck(:id) + [@user.id] ).last(10)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="11">
+        <li class="covered" data-hits="5" data-linenumber="11">
+          <span class="hits">5</span>
           
-          
-          <code class="ruby">    # unless @user == current_user</code>
+          <code class="ruby">    @hot_tags = ActsAsTaggableOn::Tag.most_used(10)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="12">
           
           
-          <code class="ruby">    #    redirect_to :back, alert: &quot;Access denied.&quot; rescue redirect_to user_path</code>
+          <code class="ruby">     #Get all posts from user and user&#39;s idols</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="13">
           
           
-          <code class="ruby">    # end</code>
+          <code class="ruby">    # unless @user == current_user</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="14">
           
           
-          <code class="ruby">    #@post = Post.new #for form_for post</code>
+          <code class="ruby">    #    redirect_to :back, alert: &quot;Access denied.&quot; rescue redirect_to user_path</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="15">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">    # end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="16">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    #@post = Post.new #for form_for post</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="17">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="18">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="19">
           
           
           <code class="ruby">end</code>
@@ -827,7 +839,7 @@
         <li class="covered" data-hits="5" data-linenumber="4">
           <span class="hits">5</span>
           
-          <code class="ruby">		@tweets = Post.includes(:user).reverse_order.first(10)</code>
+          <code class="ruby">		@posts = Post.includes(:user).reverse_order.first(10)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="5">
@@ -1191,11 +1203,11 @@
         <div class="source_table" id="8a89ead43dac8ae58471c1728df25f08cfbdee7b">
   <div class="header">
     <h3>app/models/post.rb</h3>
-    <h4><span class="red">66.67 %</span> covered</h4>
+    <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>9</b> relevant lines. 
-      <span class="green"><b>6</b> lines covered</span> and
-      <span class="red"><b>3</b> lines missed.</span>
+      <b>7</b> relevant lines. 
+      <span class="green"><b>7</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
   
@@ -1247,46 +1259,64 @@
         <li class="covered" data-hits="1" data-linenumber="8">
           <span class="hits">1</span>
           
-          <code class="ruby">	def self.search(options = {})</code>
+          <code class="ruby">  acts_as_taggable # Alias for acts_as_taggable_on :tags</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="9">
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">		search_term = options.fetch(:content) {nil}</code>
+          <code class="ruby">  acts_as_taggable_on :hashtags</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="10">
-          
-          
-          <code class="ruby">		return [] if search_term.nil?</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="11">
-          
-          
-          <code class="ruby">	  where(&quot;content LIKE :term&quot;, term: &quot;%#{search_term}%&quot;)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="12">
-          
-          
-          <code class="ruby">	  #ILIKE is postgres only, http://stackoverflow.com/questions/19105706</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="13">
-          
-          
-          <code class="ruby">	end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="14">
+        <li class="never" data-hits="" data-linenumber="10">
           
           
           <code class="ruby"></code>
         </li>
       
+        <li class="never" data-hits="" data-linenumber="11">
+          
+          
+          <code class="ruby">	# def self.search(options = {})</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
+          
+          
+          <code class="ruby">	# 	search_term = options.fetch(:content) {nil}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="13">
+          
+          
+          <code class="ruby">	# 	return [] if search_term.nil?</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="14">
+          
+          
+          <code class="ruby">	#   where(&quot;content LIKE :term&quot;, term: &quot;%#{search_term}%&quot;)</code>
+        </li>
+      
         <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby">	#   #ILIKE is postgres only, http://stackoverflow.com/questions/19105706</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby">	# end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="17">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="18">
           
           
           <code class="ruby">end</code>

@@ -1,5 +1,6 @@
 ;$(function() {
     $('#searchButton').on('click', function() {
+        console.log('search clicked!');
         var userInput = $('#searchTerm').val();
         if (userInput.length > 0) {
             $.ajax({

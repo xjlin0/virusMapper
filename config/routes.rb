@@ -3,8 +3,9 @@ Rails.application.routes.draw do
 	
   resources :posts, except: [:create]
   post '/posts' => 'posts#create', as: 'create_post'
+  get  '/posts/:id/vote' => 'posts#vote', as:'vote_post'
 
-  get '/search' => 'application#search'
+  get '/search' => 'users#search'
 
   devise_for :users
 
