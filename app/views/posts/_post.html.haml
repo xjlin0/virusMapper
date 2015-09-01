@@ -1,4 +1,4 @@
-- current_user_id_hash = current_user.nil? ? nil : Digest::SHA1.hexdigest(current_user.id.to_s) #Ruby's native #hash value for an object is different across invocations
+- current_user_id_hash = current_user.nil? ? form_authenticity_token[1..40] : Digest::SHA1.hexdigest(current_user.id.to_s) #Ruby's native #hash value for an object is different across invocations
 .panel
   .panel-heading
     .panel-title.tweets{'data-id' =>  post.id}
@@ -6,13 +6,14 @@
   .panel-body
     %button.btn.btn-default.vote{type: "button"}
       %span.glyphicon.glyphicon-thumbs-up{'data-id' => post.id}
-      %span.badge.up{'data-id' => post.id, value: 'Up', voter_hash: current_user_id_hash, alt: 'thumbs-up'} 0
+      %span.badge{'data-id' => post.id, value: 'Up', voter_hash: current_user_id_hash, alt: 'thumbs-up'} #{post.get_likes.size} 
     %button.btn.btn-default.vote{type: "button"}
-      %span.glyphicon.glyphicon-thumbs-down{'data-id' => post.id}
-      %span.badge.down{'data-id' => post.id, value: 'Down', voter_hash: current_user_id_hash, alt: 'thumbs-down'} 5
-    Hashtags:
-    =post.cached_tag_list
+      %span.glyphicon.glyphicon-thumbs-down{'data-id' => post.id} 
+      %span.badge{'data-id' => post.id, value: 'Down', voter_hash: current_user_id_hash, alt: 'thumbs-down'} #{post.get_dislikes.size}
+    - unless post.cached_tag_list.nil?
+      Hashtags:
+      =post.cached_tag_list
     \- Posted by
     = link_to(post.user.name + ",", post.user)
-    = time_ago_in_words(post.created_at) 
+    = time_ago_in_words(post.created_at)
     ago.
