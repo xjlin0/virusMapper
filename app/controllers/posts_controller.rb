@@ -1,11 +1,11 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:create, :destroy]
+  before_action :set_post, only: [:vote, :show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:vote, :create, :destroy]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = params[:tag_id].nil? ? Post.all : Post.tagged_with(ActsAsTaggableOn::Tag.find(params[:tag_id]))
+    @posts = params[:tag_id].nil? ? Post.includes(:user).last(10) : Post.includes(:user).tagged_with(ActsAsTaggableOn::Tag.find(params[:tag_id]))
   end
 
   # GET /posts/1
@@ -60,44 +60,30 @@ class PostsController < ApplicationController
     end
   end
 
-  def vote    # UPDATE /posts/:id/vote.json
-    p 'PostsController  line 64'
-    p params
-    #return nil unless params[:voter_hash] && params[:voter_hash] == Digest::SHA1.hexdigest(current_user.id.to_s) #defense against unauthorized voting
-    vote_count = 0
-    p "PostsController  line 67"
-    @post = Post.find(params[:id])
-    if params[:vote] == 'Up'
-      @post.upvote_by(current_user)
-      vote_count = @post.get_likes.size
-    elsif params[:vote] == 'Down'
-      @post.downvote_by(current_user)
-      vote_count = @post.get_dislikes.size
-    end
-    p "PostsController  line 77"
-    p vote_count
-    respond_to { |format| format.json { render json: vote_count } }
+  def vote    # GET /posts/:id/vote.json
+      vote_count = case params[:vote]
+      when 'Up'
+        @post.upvote_by(current_user)
+        @post.cached_votes_up
+      when 'Down'
+        @post.downvote_by(current_user)
+        @post.cached_votes_down
+      end
 
-#check if voter_hash equals current_user.id hash
-
-
-# upvote_by ..... => Add upvote by current_user
-# get_dislikes.size => Count all downvotes
-# get_likes.size => Count all upvotes
-
-
-    # @results = term.nil? ? [] : User.search(name: term) #+ Post.search(content: term)
-    # respond_to { |format| format.json { render json: @results } }
-  end 
+      respond_to do |format|
+        format.html { render file: 'public/404', status: 404 }
+        format.json { render json: {vote_count: vote_count}, status: 200 }
+      end
+  end # authorization by Devise' #before_action
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:post).permit(:content, :user_id, :tag_list, :tag_id, :voter_hash, :vote)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def post_params
+    params.require(:post).permit(:content, :user_id, :tag_list, :tag_id, :vote)
+  end
 end

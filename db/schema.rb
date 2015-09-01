@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150831233933) do
+ActiveRecord::Schema.define(version: 20150901053248) do
 
   create_table "followships", force: :cascade do |t|
     t.integer  "followee_id", limit: 4
@@ -25,13 +25,17 @@ ActiveRecord::Schema.define(version: 20150831233933) do
   add_index "followships", ["follower_id"], name: "index_followships_on_follower_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
-    t.string   "content",         limit: 140, null: false
-    t.integer  "user_id",         limit: 4
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.string   "cached_tag_list", limit: 255
+    t.string   "content",           limit: 140,             null: false
+    t.integer  "user_id",           limit: 4
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.string   "cached_tag_list",   limit: 255
+    t.integer  "cached_votes_up",   limit: 4,   default: 0
+    t.integer  "cached_votes_down", limit: 4,   default: 0
   end
 
+  add_index "posts", ["cached_votes_down"], name: "index_posts_on_cached_votes_down", using: :btree
+  add_index "posts", ["cached_votes_up"], name: "index_posts_on_cached_votes_up", using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "taggings", force: :cascade do |t|

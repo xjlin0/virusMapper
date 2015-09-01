@@ -6,7 +6,7 @@
             var tfidfScoreThreshold = 0.92;
             var syndromes = {
                 cold: 'cold sore throat cough coughed coughing sneeze sneezes sneezed sneezing stuffy running nose tissues flu fever sick ill illness',
-                insomnia: 'insomnia tired bed fall asleep cannot couldn sleep slept sleeping pill pills drowsy anxious stressed headache awake wake waked fatigue concentrate coffee stay night bedtime',
+                insomnia: 'insomnia tired bed fall asleep cannot couldn didn sleep slept sleeping pill pills drowsy anxious stressed headache awake wake waked fatigue concentrate coffee stay night bedtime',
             };
 
             var infoLinks = {

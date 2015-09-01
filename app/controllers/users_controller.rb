@@ -19,7 +19,10 @@ class UsersController < ApplicationController
   def search    # GET /search/term.json
     term     = params[:term]
     @results = term.nil? ? [] : User.search(name: term) #+ Post.search(content: term)
-    respond_to { |format| format.json { render json: @results } }
+    respond_to do |format|
+      format.html { render file: 'public/404', status: 404 }
+      format.json { render json: @results, status: 200 }
+    end
   end  # Search results get no ranking here
 
 end

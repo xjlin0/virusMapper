@@ -10,18 +10,14 @@
     User #{user.name} has posted 
     = pluralize(user.post_count, 'tweet') 
     so far.
-
-  - if current_user.idols.include?(user)
-    = button_to("Unfollow the user", user_remove_followship_path(user_id: user.id), method: :delete, class: "button btn btn-lg btn-info")
-
-  - else
-    = button_to("Follow the user", user_new_followship_path(user_id: user.id), class: "button btn btn-lg btn-info")
+  = render 'follow_button', user: user, extra_class: 'btn-lg btn-info'
 
 .well
   - unless user.followee_count.zero? #move this block to helper
     %h4 User #{user.name} is following:
     - user.idols.each do |idol|
-      %p
+      .panel
+        = render 'follow_button', user: idol, extra_class: 'btn-xs btn-info pull-left'
         = link_to(idol.name, idol)
   - else
     %h3 User #{user.name} is not following anyone.
@@ -29,5 +25,5 @@
 .well
   %h4 Trending:
   - hot_tags.each do |tag|
-    %p
+    .panel
       = link_to(tag.name, posts_path(tag_id: tag.id))

@@ -14,7 +14,7 @@
                 charCountHTML = 140 - charCount
         }
         $(".charCount").html(charCountHTML);
-    });  //The above code is for counting user input text
+    });  //The above code is for counting user input text for creating Post
 
     $('.vote').on('click', function() {
         button = $('span:last', this)
@@ -29,7 +29,7 @@
                 data:     voteData,
             })
             .done(function(postCount) {
-                button.text(postCount);
+                button.text(postCount.vote_count);
             })
             //.fail(function() {}).always(function() { });
     }); //The above code is for voting post

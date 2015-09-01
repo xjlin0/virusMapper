@@ -1,4 +1,3 @@
-- current_user_id_hash = current_user.nil? ? form_authenticity_token[1..40] : Digest::SHA1.hexdigest(current_user.id.to_s) #Ruby's native #hash value for an object is different across invocations
 .panel
   .panel-heading
     .panel-title.tweets{'data-id' =>  post.id}
@@ -6,13 +5,15 @@
   .panel-body
     %button.btn.btn-default.vote{type: "button"}
       %span.glyphicon.glyphicon-thumbs-up{'data-id' => post.id}
-      %span.badge{'data-id' => post.id, value: 'Up', voter_hash: current_user_id_hash, alt: 'thumbs-up'} #{post.get_likes.size} 
+      %span.badge{'data-id' => post.id, value: 'Up', alt: 'thumbs-up'} #{post.cached_votes_up} 
     %button.btn.btn-default.vote{type: "button"}
       %span.glyphicon.glyphicon-thumbs-down{'data-id' => post.id} 
-      %span.badge{'data-id' => post.id, value: 'Down', voter_hash: current_user_id_hash, alt: 'thumbs-down'} #{post.get_dislikes.size}
-    - unless post.cached_tag_list.nil?
-      Hashtags:
-      =post.cached_tag_list
+      %span.badge{'data-id' => post.id, value: 'Down', alt: 'thumbs-down'} #{post.cached_votes_down}
+    - unless post.cached_tag_list.blank?
+      %strong
+        = #pluralize(post.cached_tag_list.count('#'), 'Hashtag').sub(/^\d+\s/, '')+': '
+        = post.cached_tag_list.count('#') > 1 ? 'Hashtags: ' : 'Hashtag: '
+        =post.cached_tag_list
     \- Posted by
     = link_to(post.user.name + ",", post.user)
     = time_ago_in_words(post.created_at)
