@@ -10,14 +10,14 @@
     User #{user.name} has posted 
     = pluralize(user.post_count, 'tweet') 
     so far.
-  = render 'follow_button', user: user, extra_class: 'btn-lg btn-info'
+  = follow_button({user: user, extra_class: 'btn-lg btn-info'})
 
 .well
   - unless user.followee_count.zero? #move this block to helper
     %h4 User #{user.name} is following:
     - user.idols.each do |idol|
       .panel
-        = render 'follow_button', user: idol, extra_class: 'btn-xs btn-info pull-left'
+        = follow_button({user: idol, extra_class: 'btn-xs btn-info pull-left'})
         = link_to(idol.name, idol)
   - else
     %h3 User #{user.name} is not following anyone.

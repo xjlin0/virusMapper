@@ -2,28 +2,20 @@
   %h3 You are following:
   - current_user.idols.each do |idol|
     .panel
-      = render 'users/follow_button', user: idol, extra_class: 'btn-xs btn-info pull-left'
+      = follow_button({user: idol, extra_class: 'btn-xs btn-info pull-left'})
       = link_to(idol.name, idol)
 
 - else
   %h3 You are not following anybody.
 
-
-  / %table.table
-  /   %tbody
-  /     - current_user.idols.each do |idol|
-  /       %tr
-  /         %td= link_to(idol.name, idol)
-  /         %td= button_to("Unfollow the user", user_remove_followship_path(user_id: idol.id), method: :delete, class: "btn btn-xs btn-warning")
-
 %hr
 
 - unless current_user.fans.empty? #move this block to helper
   %h3 You are followed by:
-  - current_user.fans.each do |idol|
+  - current_user.fans.each do |fan|
     .panel
-      = render 'users/follow_button', user: idol, extra_class: 'btn-xs btn-info pull-left'
-      = link_to(idol.name, idol)
+      = follow_button({user: fan, extra_class: 'btn-xs btn-info pull-left'})
+      = link_to(fan.name, fan)
       
 - else
   %h3 You are not followed by anybody.
