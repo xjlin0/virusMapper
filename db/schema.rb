@@ -14,8 +14,8 @@
 ActiveRecord::Schema.define(version: 20150901053248) do
 
   create_table "followships", force: :cascade do |t|
-    t.integer  "followee_id", limit: 4
-    t.integer  "follower_id", limit: 4
+    t.integer  "followee_id", limit: 4, null: false
+    t.integer  "follower_id", limit: 4, null: false
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
   end
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150901053248) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "content",           limit: 140,             null: false
-    t.integer  "user_id",           limit: 4
+    t.integer  "user_id",           limit: 4,               null: false
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
     t.string   "cached_tag_list",   limit: 255

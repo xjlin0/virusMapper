@@ -13,9 +13,11 @@
                     	  var re = new RegExp(userInput, 'ig');
                     	  var result = searchResults[index];
                     	  var userHTML = '<li><a href="';
-                        if (result.hasOwnProperty('name')) {
+                        if (result.hasOwnProperty('name')) {  //for user model
                         	userHTML += '/users/' + result.id + '">' + result.name + '</a></li>';
-                        }//else{ } //for non-user model
+                        }else{   //for non-user model
+                            userHTML += '/users/' + result.user_id + '">' + result.content + '</a></li>';
+                        } 
                         $('.resultList').html(userHTML.replace(re, '<mark>'+userInput+'</mark>'));
                     }
                 })

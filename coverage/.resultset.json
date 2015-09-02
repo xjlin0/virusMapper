@@ -511,6 +511,22 @@
         null,
         null
       ],
+      "/Users/jlin/Desktop/toys/tweetComposer/app/helpers/users_helper.rb": [
+        1,
+        1,
+        5,
+        5,
+        10,
+        10,
+        null,
+        5,
+        0,
+        null,
+        5,
+        null,
+        null,
+        null
+      ],
       "/Users/jlin/Desktop/toys/tweetComposer/app/helpers/visitors_helper.rb": [
         1,
         null
@@ -1269,6 +1285,6 @@
         null
       ]
     },
-    "timestamp": 1441138091
+    "timestamp": 1441211920
   }
 }

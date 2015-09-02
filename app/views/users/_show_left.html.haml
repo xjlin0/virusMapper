@@ -1,6 +1,6 @@
 .well
   %h3 User #{user.name}
-  = image_tag(user.img_url, {alt: "User " + user.name.to_s + "'s picture", class: "thumbnail"})
+  = image_tag(user.img_url, {alt: "User " + user.name + "'s picture", class: "thumbnail"})
 
   -if current_user == user
     %p

@@ -19,8 +19,3 @@
       
 - else
   %h3 You are not followed by anybody.
-  / %table.table
-  /   %tbody
-  /     - current_user.fans.each do |fan|
-  /       %tr
-  /         %td= link_to(fan.name, fan)

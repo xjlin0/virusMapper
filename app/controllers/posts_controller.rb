@@ -8,6 +8,8 @@ class PostsController < ApplicationController
     @posts = params[:tag_id].nil? ? Post.includes(:user).last(10) : Post.includes(:user).tagged_with(ActsAsTaggableOn::Tag.find(params[:tag_id]))
   end
 
+  
+
   # GET /posts/1
   # GET /posts/1.json
   def show
